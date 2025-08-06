@@ -86,6 +86,5 @@ setopt prompt_subst
 # Create prompt
 export PS1='%F{$RP_H_MUTED}%~$(git_branch_name)$(git_commits_ahead)$(git_commints_behind)$(git_files_tracked)$(git_files_untracked) %F{$RP_H_IRIS}> %F{$RP_TEXT}'
 
-
-
+export LS_COLORS="$(vivid generate rose-pine)"
 

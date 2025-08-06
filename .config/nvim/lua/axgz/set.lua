@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
       end
     })
 
--- Keep 4 empty lines at eof
+-- Ensure 1 lines at eof
 vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Add trailing lines to eof when saving",
     group = vim.api.nvim_create_augroup("buf_eof", {clear = true}),
@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.cmd([[keeppatterns silent! %s#\($\n\s*\)\+\%$##]])
 
         -- Add 4 lines at eof ('G' position the cursor at the eof 'o' enter insert mode)
-        for _ = 1, 4 do
+        for _ = 1, 1 do
             vim.cmd("normal! Go\n\n\n")
         end
 

@@ -119,6 +119,3 @@ alias cls=clear
 source $HOME/.env_vars
 source $HOME/.config/zsh/rose-pine
 
-
-
-
