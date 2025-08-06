@@ -87,19 +87,20 @@ dnf install lazygit
 
 ### Nerd-Fonts
 
+> https://www.nerdfonts.com/font-downloads
+
 ``` bash
+# After downloading the font (above url)
+font_name="CommitMono"
+
 # Install Nerd-Fonts
-wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraMono.zip \
-&& cd ~/.local/share/fonts \
-&& unzip FiraMono.zip \
-&& rm FiraMono.zip \
-&& fc-cache -fv
+ unzip ~/Downloads/${font_name}.zip -d ~/.local/share/fonts/${font_name} && fc-cache -fv
 
 # list all installed Nerd fonts
-fc-list | grep Nerd
+fc-list | grep ${font_name}
 
 # ~/.env_vars
-export NERD_FONT_NAME="FiraMono Nerd Font Mono"
+echo "export NERD_FONT_NAME=\"${font_name} Nerd Font\"" >> ~/.env_vars
 
 # ~/.zshrc
 source "$HOME/.env_vars"
@@ -141,6 +142,7 @@ mkdir -p ~/dotfiles/.config
 cp -ru ~/.zshrc        ~/dotfiles/
 cp -ru ~/.bashrc       ~/dotfiles/
 cp -ru ~/.bash_profile ~/dotfiles/
+cp -ru ~/.zshrc        ~/dotfiles/
 cp -ru ~/.env_vars     ~/dotfiles/
 cp -ru ~/.local/bin    ~/dotfiles/.local/
 cp -ru ~/.config/tmux  ~/dotfiles/.config/
