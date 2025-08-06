@@ -1,4 +1,8 @@
+# Ignore lazy's lock file
 lazy-lock.json
+
+# Ignore tmux plugins installed by tmp
+.config/tmux/plugins
 
 
 
