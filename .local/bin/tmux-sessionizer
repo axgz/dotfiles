@@ -1,0 +1,63 @@
+#!/bin/zsh
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    #selected=$(find ~/work/builds ~/projects ~/ ~/work ~/personal ~/personal/yt -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find /home ~/ ~/.config ~/.local -maxdepth 1 -mindepth 1 -type d ! -name ".*" | fzf)
+fi
+
+#selected_name=$(basename "$selected" | tr . _)
+selected_clean=${selected//"."/"_"}
+ss=${selected_clean/$HOME/'~'}
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+is_tmux_running() {
+    tmux_pids=$(pgrep tmux)
+    if [[ -z $tmux_pids ]]; then
+        # $tmux_pids is null to return falsy
+        return 1
+    fi
+    # return truthy
+    return 0
+}
+
+in_tmux_client() {
+    if [[ -z $TMUX ]]; then
+        # $TMUX is null so return falsy
+        return 1
+    fi
+    # return truthy
+    return 0
+}
+
+session_exists() {
+    if tmux has-session -t $ss 2> /dev/null; then
+        return 0
+    fi
+    return 1
+}
+
+# Create the session if it doesn't exists
+if ! session_exists; then
+    tmux new-session -ds $ss -n "nvim" -c $selected "nvim ."
+fi
+
+# Create / recreate desired windows (fails silently if they already exist)
+tmux new-window -Sdt $ss -n "nvim" -c $selected "nvim ."
+tmux new-window -Sdt $ss -n "shell" -c $selected
+tmux select-window -t "nvim"
+
+# Select our desired window when connecting
+if in_tmux_client; then
+    tmux switch-client -t $ss
+else
+    tmux attach-session -t $ss
+fi
+
+
+
+

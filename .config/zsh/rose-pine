@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Rose-Pine things
+# --------- ------
+# https://rosepinetheme.com/palette/ingredients/
+
+RP_BASE='00;00;00'
+RP_MUTED='110;106;134'
+RP_SUBTITLE='144;140;170'
+RP_TEXT='224;222;244'
+RP_LOVE='235;111;146'
+RP_GOLD='246;193;119'
+RP_PINE='49;116;143'
+RP_IRIS='196;167;231'
+
+RP_H_BASE='#000000'
+RP_H_MUTED='#6e6a86'
+RP_H_SUBTITLE='#908caa'
+RP_H_TEXT='#e0def4'
+RP_H_LOVE='#eb6f92'
+RP_H_GOLD='#f6c177'
+RP_H_PINE='#31748f'
+RP_H_IRIS='#c4a7e7'
+
+LSC_DIR="\e[38;2;${RP_MUTED}"
+LSC_SYML="\e[38;2;${RP_IRIS}"
+LSC_FILE="\e[38;2;${RP_TEXT}"
+LSC_EXEC="\e[38;2;${RP_GOLD}"
+
+GIT_BRANCH=$RP_LOVE
+GIT_STATUS=$RP_GOLD
+
+if [[ -z $LS_COLORS_ORIG ]]; then
+    export LS_COLORS_ORIG=$LS_COLORS
+fi
+
+# Note: \e[38;2;RRR:GGG:BBB: is for regular
+# Note: \e[38;2;RRR;GGG;BBB;1; is for bold
+export LS_COLORS="${LS_COLORS_ORIG}di=${LSC_DIR}:fi=${LSC_FILE}:ln=${LSC_SYML}:ex=${LSC_EXEC}:"
+
+# Find and set branch name var if in git repository.
+function git_branch_name() {
+    branch=$(git branch --show-current 2>/dev/null)
+    if [[ $branch != "" ]]; then
+        echo "%F{$RP_H_IRIS} $branch%f"
+    fi
+}
+
+# Find number of untracked files
+function git_files_untracked() {
+    count=$(git ls-files --others --exclude-standard 2>/dev/null | wc -l)
+    if [[ $count > 0 ]]; then
+        echo "%F{$RP_H_LOVE} $count%f"
+    fi
+}
+
+# Find number of staged files
+function git_files_tracked() {
+    count=$(git diff --name-only 2>/dev/null | wc -l)
+    if [[ $count > 0 ]]; then
+        echo "%F{$RP_H_GOLD} $count%f"
+    fi
+}
+
+# Find number of unpushed commits
+function git_commits_ahead() {
+    branch=$(git branch --show-current 2>/dev/null)
+    count=$(git rev-list --count origin/$branch..$branch 2>/dev/null)
+    if [[ $count > 0 ]]; then
+        echo "%F{$RP_H_IRIS}|+$count%f"
+    fi
+}
+
+# Find number of unpulled commits
+function git_commints_behind() {
+    branch=$(git branch --show-current 2>/dev/null)
+    count=$(git rev-list --count $branch..origin/$branch 2>/dev/null)
+    if [[ $count > 0 ]]; then
+        echo "%F{$RP_H_IRIS}|-$count%f"
+    fi
+}
+
+# Enable substitution in the prompt.
+setopt prompt_subst
+
+# Create prompt
+export PS1='%F{$RP_H_MUTED}%~$(git_branch_name)$(git_commits_ahead)$(git_commints_behind)$(git_files_tracked)$(git_files_untracked) %F{$RP_H_IRIS}> %F{$RP_TEXT}'
+
+
+
+
