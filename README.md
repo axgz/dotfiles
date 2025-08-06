@@ -106,6 +106,18 @@ echo "export NERD_FONT_NAME=\"${font_name} Nerd Font\"" >> ~/.env_vars
 source "$HOME/.env_vars"
 ```
 
+### vivid
+
+> https://github.com/sharkdp/vivid
+
+``` bash
+# Enable the 'dejan/lazygit' copr repo
+dnf copr enable skoved/vivid
+
+# Install
+dnf install vivid
+```
+
 ### oh-my-zsh
 
 > https://ohmyz.sh/#install
