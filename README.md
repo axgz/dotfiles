@@ -21,6 +21,7 @@ Item        | Description
 ---         | ---
 git         | Source control cli
 git-credential-manager | Allows use of secretservice for git auth
+seahorse    | UI to manage keys in the sercretservice (freedesktop gnome-keyring)
 lazygit     | UI engine for git
 stow        | A dotfiles linker
 kitty       | Terminal emulator
@@ -64,11 +65,8 @@ git config --global user.email axgz
 > https://github.com/git-ecosystem/git-credential-manager/releases
 
 ``` bash
-# Enable 'matthickford/git-credential-manager' copr repo
-dnf copr enable matthickford/git-credential-manager
-
-# Install
-dnf install git-credential-manager
+# After downloading the latest tarball release (url above):
+tar -xvf ~/Downloads/gcm-linux_amd64.2.6.1.tar.gz -C /usr/local/bin
 
 # Configure
 git-credential-manager configure
