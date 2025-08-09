@@ -71,6 +71,3 @@ vim.keymap.set("n", "<leader>_x", "<cmd>!chmod -x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>fc", ":bd<CR>")
 vim.keymap.set("n", "<leader>fS", ":bd!<CR>")
 
-
-
-

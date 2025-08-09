@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# catppuccin-mocha theme
+# ---------------- -----
+# https://catppuccin.com/palette/
+
+black='#000000'
+
+cp_base='#1e1e2e'
+cp_green='#a6e3a1'
+cp_red='#f38ba8'
+cp_text='#cdd6f4'
+cp_mauve='#cba6f7'
+cp_overlay0='#6c7086'
+cp_peach='#fab387'
+cp_surface1='#45475a'
+
+export THEME_NAME='catppuccin-mocha'
+export THEME_FONT=$NERD_FONT_NAME
+
+export THEME_COLOURS_PS1_PWD=$cp_overlay0
+export THEME_COLOURS_PS1_PROMPT=$cp_mauve
+export THEME_COLOURS_PS1_TEXT=$cp_text
+export THEME_COLOURS_GIT_BRANCH=$cp_mauve
+export THEME_COLOURS_GIT_UNTRACKED=$cp_red
+export THEME_COLOURS_GIT_TRACKED=$cp_green
+export THEME_COLOURS_TMUX_STATUS_BG=$black
+export THEME_COLOURS_TMUX_STATUS_BG_ONPREFIX=$cp_base
+export THEME_COLOURS_TMUX_STATUS_FG_1=$cp_overlay0
+export THEME_COLOURS_TMUX_STATUS_FG_2=$cp_text
+export THEME_COLOURS_TMUX_WINDOW_BG=$black
+export THEME_COLOURS_TMUX_WINDOW_BG_ONPREFIX=$cp_base
+export THEME_COLOURS_TMUX_WINDOW_FG=$cp_surface1
+export THEME_COLOURS_TMUX_WINDOW_FG_ONPREFIX=$cp_text
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_BG=$cp_surface1
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_FG=$cp_text
+
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
+

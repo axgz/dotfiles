@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source ~/.zshrc
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
@@ -57,7 +59,4 @@ if in_tmux_client; then
 else
     tmux attach-session -t $ss
 fi
-
-
-
 

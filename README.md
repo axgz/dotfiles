@@ -8,7 +8,7 @@ Fedora 42 Workstation (GNOME)
 
 Not sure if this fixed it: `sudo dnf reinstall shared-mime-info` or if installing Nerd Fonts fixed it.
 
-**Problem with videos not playing (codecs>)**
+**Problem with videos not playing (codecs)**
 
 No idea what fixed this, playback started workings after installing hyprland.
 
@@ -94,7 +94,7 @@ dnf install lazygit
 font_name="CommitMono"
 
 # Install Nerd-Fonts
- unzip ~/Downloads/${font_name}.zip -d ~/.local/share/fonts/${font_name} && fc-cache -fv
+unzip ~/Downloads/${font_name}.zip -d ~/.local/share/fonts/${font_name} && fc-cache -fv
 
 # list all installed Nerd fonts
 fc-list | grep ${font_name}
@@ -172,7 +172,4 @@ cp -ru ~/.config/kitty ~/dotfiles/.config/
 cd ~/dotfiles
 stow .
 ```
-
-
-
 

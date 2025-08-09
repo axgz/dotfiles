@@ -78,6 +78,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+source $HOME/.config/zsh/plugins/catppuccin-mocha-zsh-syntax-highlighting.zsh
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
@@ -117,5 +118,6 @@ alias cls=clear
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $HOME/.env_vars
-source $HOME/.config/zsh/rose-pine
+source $HOME/.config/zsh/themes/catppuccin-mocha
+source $HOME/.config/zsh/plugins/prompt.sh
 

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Rose-Pine theme
+# --------- -----
+# https://rosepinetheme.com/palette/ingredients/
+
+black='#000000'
+
+rp_overlay='#26233a'
+rp_muted='#6e6a86'
+rp_text='#e0def4'
+rp_love='#eb6f92'
+rp_gold='#f6c177'
+rp_iris='#c4a7e7'
+
+export THEME_NAME='rose-pine'
+export THEME_FONT=$NERD_FONT_NAME
+
+export THEME_COLOURS_PS1_PWD=$rp_muted
+export THEME_COLOURS_PS1_PROMPT=$rp_iris
+export THEME_COLOURS_PS1_TEXT=$rp_text
+export THEME_COLOURS_GIT_BRANCH=$rp_iris
+export THEME_COLOURS_GIT_UNTRACKED=$rp_love
+export THEME_COLOURS_GIT_TRACKED=$rp_gold
+export THEME_COLOURS_TMUX_STATUS_BG=$black
+export THEME_COLOURS_TMUX_STATUS_BG_ONPREFIX=$rp_overlay
+export THEME_COLOURS_TMUX_STATUS_FG_1=$rp_muted
+export THEME_COLOURS_TMUX_STATUS_FG_2=$rp_text
+export THEME_COLOURS_TMUX_WINDOW_BG=$rp_overlay
+export THEME_COLOURS_TMUX_WINDOW_FG=$rp_muted
+export THEME_COLOURS_TMUX_WINDOW_FG_ONPREFIX=$rp_text
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_BG=$rp_muted
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_FG=$rp_text
+
+export LS_COLORS="$(vivid generate rose-pine)"
+

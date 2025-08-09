@@ -1,6 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/zsh
+
+source ~/.zshrc
 
 # Create a new session called TERM in the home directory
 tmux new-session -ds "TERM" -n "~" -c $HOME
 tmux new-window -Sdt "TERM" -n "~" -c $HOME
 tmux attach-session -t "TERM"
+
