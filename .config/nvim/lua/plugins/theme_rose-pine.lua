@@ -2,12 +2,20 @@
 
 return {
     "rose-pine/neovim",
+    lazy = false,
+    priority = 1000,
     name = "rose-pine",
     config = function()
         require("rose-pine").setup({
-            disable_background = true,
+            enable = {
+                terminal = true,
+                legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+                migrations = true, -- Handle deprecated options automatically
+            },
             styles = {
-                italic = false
+                bold = true,
+                italic = true,
+                transparency = true
             }
         })
     end

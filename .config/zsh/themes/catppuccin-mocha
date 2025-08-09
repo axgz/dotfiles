@@ -35,5 +35,6 @@ export THEME_COLOURS_TMUX_WINDOW_FG_ONPREFIX=$cp_text
 export THEME_COLOURS_TMUX_WINDOW_ACTIVE_BG=$cp_surface1
 export THEME_COLOURS_TMUX_WINDOW_ACTIVE_FG=$cp_text
 
+# https://github.com/sharkdp/vivid
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 

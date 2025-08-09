@@ -14,6 +14,6 @@ return {
     },
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
-    vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>")
+    vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>", { desc = "LazyGit - Toggle Menu" })
 }
 

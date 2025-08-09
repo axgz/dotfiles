@@ -1,0 +1,153 @@
+#!/bin/bash
+
+# jellybeans-muted palatte
+# ---------------- -------
+#foreground = "#dad6c8", -- Desaturated muted foreground
+#background = "#101010", -- Slightly warmer muted background
+#
+#grey            = "#7a7a7a", -- Less saturated grey
+#grey_one        = "#1e1e1c", -- Warmer grey
+#grey_two        = "#e9e5dc", -- Muted off-white
+#grey_three      = "#302e2c", -- Warmer dark grey
+#regent_grey     = "#8a8c91", -- Less saturated
+#scorpion        = "#585855", -- Desaturated
+#cod_grey        = "#121210", -- Warmer dark
+#tundora         = "#3c3b38", -- Warmer mid-tone
+#zambezi         = "#58534f", -- Less saturated brown-grey
+#silver_rust     = "#c2bdb8", -- Desaturated light tone
+#silver          = "#bebebe", -- Desaturated silver
+#alto            = "#d8d4ca", -- Muted light tone
+#gravel          = "#3c3936", -- Warmer dark tone
+#boulder         = "#6f6f6c", -- Desaturated mid-grey
+#cocoa_brown     = "#2c2824", -- Warmer brown
+#grey_chateau    = "#93989c", -- Desaturated blue-grey
+#bright_grey     = "#353b3e", -- Desaturated blue-grey
+#shuttle_grey    = "#4d5459", -- Desaturated blue-grey
+#mine_shaft      = "#1d1c1a", -- Warmer dark
+#temptress       = "#38100a", -- Desaturated dark red
+#bayoux_blue     = "#4f5c69", -- Desaturated blue
+#total_white     = "#f9f5ec", -- Warm white muted
+#total_black     = "#0d0c0b", -- Warm black
+#cadet_blue      = "#a5acb1", -- Desaturated blue
+#perano          = "#a6c3d9", -- Desaturated light blue
+#wewak           = "#bd8695", -- Desaturated pink
+#mantis          = "#6aa84c", -- Desaturated green
+#raw_sienna      = "#c88a77", -- Desaturated orange
+#highland        = "#73916a", -- Desaturated green
+#hoki            = "#617b87", -- Desaturated blue
+#green_smoke     = "#909c6e", -- Desaturated yellow-green
+#costa_del_sol   = "#4e5a3a", -- Desaturated olive
+#biloba_flower   = "#b8aed3", -- Desaturated purple
+#morning_glory   = "#83adc3", -- Desaturated light blue
+#goldenrod       = "#e8c88c", -- Desaturated gold
+#ship_cove = "#7a8aa6", -- Desaturated blue
+#koromiko = "#d8a16c", -- Desaturated orange
+#brandy = "#c9c08c", -- Desaturated yellow
+#old_brick = "#7e2e23", -- Desaturated brick red
+#dark_blue = "#1e1e7a", -- Desaturated dark blue
+#ripe_plum = "#4a1c4f", -- Desaturated plum
+#casal = "#2a5c56", -- Desaturated teal
+#purple = "#5c1e68", -- Desaturated purple
+#tea_green = "#c5d3b2", -- Desaturated light green
+#dell = "#3c5c25", -- Desaturated forest green
+#calypso = "#28505f", -- Desaturated teal
+#
+#error = "#cc4d4d", -- Desaturated red
+#warning = "#d9a45a", -- Desaturated orange
+#info = "#7db7cc", -- Desaturated blue
+#hint = "#c0a48c", -- Desaturated tan
+#ok = "#98b67c", -- Desaturated green
+#
+
+
+
+
+
+
+
+
+black='#000000'
+
+bb_highlight=#2e3738
+bb_lowlight='#799290'
+bb_text='#c2bfb2'
+bb_hidden='#374247'
+bb_green='#b8ae88'
+bb_red='#c16f73'
+bb_blue='#4da4dc'
+
+export THEME_NAME='catppuccin-mocha'
+export THEME_FONT=$NERD_FONT_NAME
+
+export THEME_COLOURS_PS1_PWD=$bb_hidden
+export THEME_COLOURS_PS1_PROMPT='#B8AED3'
+export THEME_COLOURS_PS1_TEXT=$bb_text
+export THEME_COLOURS_GIT_BRANCH='#B8AED3'
+export THEME_COLOURS_GIT_UNTRACKED=$bb_red
+export THEME_COLOURS_GIT_TRACKED='#EACE98'
+
+# TMUX: we really only need 3 colours here (in addition to the black bg)
+#  Accent 0 is the bg of the status bar
+#  Accent 1 is the bg of the status bar when on-prefix
+#  Accent 2 is the fg of the status bar (except the clock)
+#  Accent 2 is also used as the bg of the active window
+#  Accent 3 is the fg of the active window and the clock
+
+bg_0='#000000'
+bg_1='#101010'
+bg_2='#1e1e1e'
+
+fg_1='#58534F' # line numbers
+fg_2='#797979' # comments
+fg_3='#B8AED3' # blue
+fg_4='#A5C2D8' # keywords - soft blue
+fg_5='#C88A77' # strings
+fg_6='#EACE98' # functoins - yellow
+fg_7='#66645D' # values & variables - soft yellow
+
+# Jellybeans Muted colors
+# ------------------------
+thm_bg="#101010"
+thm_fg="#dad6c8"
+thm_black="#121210"
+thm_red="#7e2e23"
+thm_green="#909c6e"
+thm_yellow="#c9c08c"
+thm_blue="#7a8aa6"
+thm_magenta="#b8aed3"
+thm_cyan="#617b87"
+thm_white="#bebebe"
+thm_orange="#c88a77"
+thm_black4="#3c3b38"
+thm_bright_blue="#83adc3"
+thm_bright_white="#f9f5ec"
+
+# Status line colors
+thm_gray="#7a7a7a"
+thm_statusline_bg="#1e1e1c"
+thm_statusline_fg="#93989c"
+thm_border="#302e2c"
+thm_active_border="#7a8aa6"
+thm_highlight="#3c3b38"
+# ------------------------
+
+accent_0='#000000'
+accent_1='#101010'
+accent_2='#1E1E1C'
+accent_3='#797979'
+accent_4='#58534F'
+
+export THEME_COLOURS_TMUX_STATUS_BG=$accent_0
+export THEME_COLOURS_TMUX_STATUS_BG_ONPREFIX=$accent_1
+export THEME_COLOURS_TMUX_STATUS_FG_1=$accent_4
+export THEME_COLOURS_TMUX_STATUS_FG_2=$accent_3
+export THEME_COLOURS_TMUX_WINDOW_BG=$black
+export THEME_COLOURS_TMUX_WINDOW_BG_ONPREFIX=$accent_1
+export THEME_COLOURS_TMUX_WINDOW_FG=$accent_4
+export THEME_COLOURS_TMUX_WINDOW_FG_ONPREFIX=$accent_3
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_BG=$accent_2
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_FG=$accent_3
+
+# https://github.com/sharkdp/vivid
+export LS_COLORS="$(vivid generate jellybeans)"
+

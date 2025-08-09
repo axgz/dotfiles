@@ -27,10 +27,12 @@ export THEME_COLOURS_TMUX_STATUS_BG_ONPREFIX=$rp_overlay
 export THEME_COLOURS_TMUX_STATUS_FG_1=$rp_muted
 export THEME_COLOURS_TMUX_STATUS_FG_2=$rp_text
 export THEME_COLOURS_TMUX_WINDOW_BG=$rp_overlay
+export THEME_COLOURS_TMUX_WINDOW_BG_ONPREFIX=$rp_overlay
 export THEME_COLOURS_TMUX_WINDOW_FG=$rp_muted
 export THEME_COLOURS_TMUX_WINDOW_FG_ONPREFIX=$rp_text
 export THEME_COLOURS_TMUX_WINDOW_ACTIVE_BG=$rp_muted
 export THEME_COLOURS_TMUX_WINDOW_ACTIVE_FG=$rp_text
 
+# https://github.com/sharkdp/vivid
 export LS_COLORS="$(vivid generate rose-pine)"
 

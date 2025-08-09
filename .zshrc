@@ -118,6 +118,7 @@ alias cls=clear
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $HOME/.env_vars
-source $HOME/.config/zsh/themes/catppuccin-mocha
+#source $HOME/.config/zsh/themes/catppuccin-mocha
+source $HOME/.config/zsh/themes/jellybeans-muted
 source $HOME/.config/zsh/plugins/prompt.sh
 

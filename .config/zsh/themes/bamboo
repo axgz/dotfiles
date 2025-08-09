@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# catppuccin-mocha theme
+# ---------------- -----
+# https://catppuccin.com/palette/
+
+black='#000000'
+
+bb_highlight=#2e3738
+bb_lowlight='#799290'
+bb_text='#c2bfb2'
+bb_hidden='#374247'
+bb_green='#b8ae88'
+bb_red='#c16f73'
+bb_blue='#4da4dc'
+
+export THEME_NAME='catppuccin-mocha'
+export THEME_FONT=$NERD_FONT_NAME
+
+export THEME_COLOURS_PS1_PWD=$bb_hidden
+export THEME_COLOURS_PS1_PROMPT=$bb_highlight
+export THEME_COLOURS_PS1_TEXT=$bb_text
+export THEME_COLOURS_GIT_BRANCH=$bb_highlight
+export THEME_COLOURS_GIT_UNTRACKED=$bb_red
+export THEME_COLOURS_GIT_TRACKED=$bb_green
+export THEME_COLOURS_TMUX_STATUS_BG=$black
+export THEME_COLOURS_TMUX_STATUS_BG_ONPREFIX=$bb_lowlight
+export THEME_COLOURS_TMUX_STATUS_FG_1=$bb_hidden
+export THEME_COLOURS_TMUX_STATUS_FG_2=$bb_text
+export THEME_COLOURS_TMUX_WINDOW_BG=$black
+export THEME_COLOURS_TMUX_WINDOW_BG_ONPREFIX=$bb_lowlight
+export THEME_COLOURS_TMUX_WINDOW_FG=$bb_hidden
+export THEME_COLOURS_TMUX_WINDOW_FG_ONPREFIX=$bb_text
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_BG=$bb_highlight
+export THEME_COLOURS_TMUX_WINDOW_ACTIVE_FG=$bb_text
+
+# https://github.com/sharkdp/vivid
+export LS_COLORS="$(vivid generate one-dark)"
+

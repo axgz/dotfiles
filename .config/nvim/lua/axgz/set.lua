@@ -37,6 +37,9 @@ vim.opt.colorcolumn = "120"
 vim.opt.list = true
 vim.opt.listchars = "trail:▒"
 
+vim.opt.spell = true
+vim.opt.spelllang = "en_au"
+
 -- Remove trailing white spaces
 vim.api.nvim_create_autocmd('BufWritePre', {
     desc = 'Trim trailing white spaces when saving',
@@ -63,7 +66,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         -- Save cursor position to restore later
         local curpos = vim.api.nvim_win_get_cursor(0)
 
-        -- Search and replace trailing whitespaces
+        -- Search and replace empty lines at eof
         vim.cmd([[keeppatterns silent! %s#\($\n\s*\)\+\%$##]])
 
         -- Add 4 lines at eof ('G' position the cursor at the eof 'o' enter insert mode)
@@ -88,21 +91,31 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
 })
 
-local restore_cursor_augroup = vim.api.nvim_create_augroup( "restore_cursor_shape_on_exit", { clear = true } )
-
+-- Set terminal cursor to a blinking bar when exiting nvim
 vim.api.nvim_create_autocmd("VimLeave", {
-  group = restore_cursor_augroup,
-  callback = function()
-    vim.opt.guicursor = "a:ver25,a:blinkwait700-blinkoff400-blinkon175"
-  end,
+    group = vim.api.nvim_create_augroup("restore_cursor_augroup", {clear = true}),
+    callback = function()
+        vim.opt.guicursor = "a:ver25,a:blinkwait700-blinkoff400-blinkon175"
+    end,
 })
 
 -- Alow wrap for markdown files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true -- Optional: breaks by word rather than character
-  end,
+    group = vim.api.nvim_create_augroup("line_wrap_for_markdown", {clear = true}),
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true -- Optional: breaks by word rather than character
+    end,
+})
+
+-- Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    desc = "Run LSP format on save",
+    group = vim.api.nvim_create_augroup("format_on_save", {clear = true}),
+    pattern = "*",
+    callback = function()
+        vim.lsp.buf.format()
+    end
 })
 
