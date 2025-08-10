@@ -39,7 +39,7 @@ The remaining should be installed by referencing their manuals, however, steps t
 | hyprpaper              | Wallpaper (hyprland)                                                |
 | rofi                   | App launcher (hyprland)                                             |
 | eza                    | A newer bin for 'ls'                                                |
-| vivid                  | A tool for configuring LS_COLORS
+| vivid                  | A tool for configuring LS_COLORS                                    |
 
 ### Packages and stow
 
@@ -154,9 +154,6 @@ mkdir -p ~/dotfiles/.local
 mkdir -p ~/dotfiles/.config
 
 cp -ru ~/.zshrc        ~/dotfiles/
-cp -ru ~/.bashrc       ~/dotfiles/
-cp -ru ~/.bash_profile ~/dotfiles/
-cp -ru ~/.zshrc        ~/dotfiles/
 cp -ru ~/.env_vars     ~/dotfiles/
 cp -ru ~/.local/bin    ~/dotfiles/.local/
 cp -ru ~/.config/tmux  ~/dotfiles/.config/
@@ -175,4 +172,3 @@ cp -ru ~/.config/vivid ~/dotfiles/.config/
 cd ~/dotfiles
 stow .
 ```
-
