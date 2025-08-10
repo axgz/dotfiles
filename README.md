@@ -173,3 +173,4 @@ cd ~/dotfiles
 stow .
 ```
 
+hi

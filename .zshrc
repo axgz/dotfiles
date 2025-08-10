@@ -79,9 +79,8 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 source $HOME/.config/zsh/plugins/catppuccin-mocha-zsh-syntax-highlighting.zsh
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
 
@@ -117,8 +116,8 @@ alias cls=clear
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+source $ZSH/oh-my-zsh.sh
 source $HOME/.env_vars
-#source $HOME/.config/zsh/themes/catppuccin-mocha
 source $HOME/.config/zsh/themes/jellybeans-muted
 source $HOME/.config/zsh/plugins/prompt.sh
 
