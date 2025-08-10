@@ -66,11 +66,15 @@ bg_3="#1e1e1c" # accent
 
 fg_0="#58534F" # line numbers
 fg_1="#7A7A7A" # comments
+fg_7="#28505f" # -- Desaturated teal
+fg_8="#4E5a3a" # -- Desaturated olive
 fg_2="#C88A77" # strings
 fg_3="#B8AED3" # keyword - 'export'
-fg_4="#bd8695" # -- Desaturated pink
 fg_5="#E8C88C" # names - 'myFunc()'
 fg_9="#DAD6C8" # Text
+
+fg_4="#bd8695" # -- Desaturated pink
+fg_6="#98b67c" # -- Desaturated green
 
 export THEME_NAME='jellybeans-muted'
 export THEME_FONT=$NERD_FONT_NAME
@@ -91,5 +95,19 @@ export THEME_COLOURS_TMUX_WIN_FG=$fg_9
 export THEME_COLOURS_TMUX_FG_ONPREFIX=$fg_3
 
 # https://github.com/sharkdp/vivid
-export LS_COLORS="$(vivid generate jellybeans)"
+export LS_COLORS="$(vivid generate jellybeans-muted)"
+
+
+
+# Set bg colour when tab completing to our accent
+# -----------------------------------------------
+
+# purple highlight
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=48;2;184;174;211;1;38;2;16;16;16;1"
+
+# orange highlight
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=48;2;200;138;119;1;38;2;16;16;16;1"
+
+# yellow highlight
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=48;2;232;200;140;1;38;2;16;16;16;1"
 

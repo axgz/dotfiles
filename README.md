@@ -17,31 +17,32 @@ No idea what fixed this, playback started workings after installing hyprland.
 Most of the following dependencies can be installed through Fedora's package manager and will be configured using stow.
 The remaining should be installed by referencing their manuals, however, steps taken at the time of writing are below.
 
-Item        | Description
----         | ---
-git         | Source control cli
-git-credential-manager | Allows use of secretservice for git auth
-seahorse    | UI to manage keys in the sercretservice (freedesktop gnome-keyring)
-lazygit     | UI engine for git
-stow        | A dotfiles linker
-kitty       | Terminal emulator
-tmux        | Terminal session managment and multiplexter
-tpm         | Package manager for tmux
-zsh         | Shell with auto complete
-oh-my-zsh   | Package manager for zsh
-neovim      | Editor
-bat         | Formatted cat
-Nerd-Fonts  | Fonts with icons
-hyprland    | Tiling window manager / compositor
-mako        | Notification daemon (hyprland)
-hyprlock    | Lock screen (hyprland)
-hypridle    | Power mgmt (hyprland)
-hyprpaper   | Wallpaper (hyprland)
-rofi        | App launcher (hyprland)
+| Item                   | Description                                                         |
+| ---------------------- | ------------------------------------------------------------------- |
+| git                    | Source control cli                                                  |
+| git-credential-manager | Allows use of secretservice for git auth                            |
+| seahorse               | UI to manage keys in the sercretservice (freedesktop gnome-keyring) |
+| lazygit                | UI engine for git                                                   |
+| stow                   | A dotfiles linker                                                   |
+| kitty                  | Terminal emulator                                                   |
+| tmux                   | Terminal session managment and multiplexter                         |
+| tpm                    | Package manager for tmux                                            |
+| zsh                    | Shell with auto complete                                            |
+| oh-my-zsh              | Package manager for zsh                                             |
+| neovim                 | Editor                                                              |
+| bat                    | Formatted cat                                                       |
+| Nerd-Fonts             | Fonts with icons                                                    |
+| hyprland               | Tiling window manager / compositor                                  |
+| mako                   | Notification daemon (hyprland)                                      |
+| hyprlock               | Lock screen (hyprland)                                              |
+| hypridle               | Power mgmt (hyprland)                                               |
+| hyprpaper              | Wallpaper (hyprland)                                                |
+| rofi                   | App launcher (hyprland)                                             |
+| eza                    | A newer bin for 'ls'                                                |
 
 ### Packages and stow
 
-``` bash
+```bash
 # Install zsh
 dnf install zsh git make stow tmux nvim bat
 
@@ -49,12 +50,12 @@ dnf install zsh git make stow tmux nvim bat
 dnf install hyperland kitty mako rofi
 
 # Install Hyprland components
-dnf install --releasever=41 hypridle hyprlock hyprpaper hyprpicker
+dnf install --releasever=41 eza hypridle hyprlock hyprpaper hyprpicker
 ```
 
 ### git
 
-``` bash
+```bash
 # Configure git for first use
 git config --global user.name axgz
 git config --global user.email axgz
@@ -64,7 +65,7 @@ git config --global user.email axgz
 
 > https://github.com/git-ecosystem/git-credential-manager/releases
 
-``` bash
+```bash
 # After downloading the latest tarball release (url above):
 tar -xvf ~/Downloads/gcm-linux_amd64.2.6.1.tar.gz -C /usr/local/bin
 
@@ -77,7 +78,7 @@ git config --global credential.credentialStore secretservice
 
 > https://github.com/jesseduffield/lazygit/releases
 
-``` bash
+```bash
 # Enable the 'dejan/lazygit' copr repo
 dnf copr enable dejan/lazygit
 
@@ -89,7 +90,7 @@ dnf install lazygit
 
 > https://www.nerdfonts.com/font-downloads
 
-``` bash
+```bash
 # After downloading the font (above url)
 font_name="CommitMono"
 
@@ -110,7 +111,7 @@ source "$HOME/.env_vars"
 
 > https://github.com/sharkdp/vivid
 
-``` bash
+```bash
 # Enable the 'dejan/lazygit' copr repo
 dnf copr enable skoved/vivid
 
@@ -122,7 +123,7 @@ dnf install vivid
 
 > https://ohmyz.sh/#install
 
-``` bash
+```bash
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -138,7 +139,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 > https://github.com/tmux-plugins/tpm
 
-``` bash
+```bash
 # Install tmp
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 ```
@@ -147,7 +148,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 ### Capture
 
-``` bash
+```bash
 mkdir -p ~/dotfiles/.local
 mkdir -p ~/dotfiles/.config
 
@@ -164,13 +165,15 @@ cp -ru ~/.config/mako  ~/dotfiles/.config/
 cp -ru ~/.config/nvim  ~/dotfiles/.config/
 cp -ru ~/.config/rofi  ~/dotfiles/.config/
 cp -ru ~/.config/kitty ~/dotfiles/.config/
+cp -ru ~/.config/vivid ~/dotfiles/.config/
 ```
 
 ### Apply
 
-``` bash
+```bash
 cd ~/dotfiles
 stow .
 ```
 
 hi
+

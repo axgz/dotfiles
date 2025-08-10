@@ -6,7 +6,9 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-export LS_COLORS_ORIG=$LS_COLORS
+if [[ -z $LS_COLORS_ORIG ]]; then
+    export LS_COLORS_ORIG=$LS_COLORS
+fi
 export LS_COLORS="${LS_COLORS_ORIG}di=1;36:"
 
 # fzf - enable key bindings
@@ -25,7 +27,4 @@ export PS1="${ROSE_PINE_ACCENT}\u@\h${RESET}:${ROSE_PINE_FG}\w${RESET}\$ "
 
 
 source "$HOME/.env_vars"
-
-
-
 

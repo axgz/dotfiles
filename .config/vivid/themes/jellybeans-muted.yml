@@ -1,0 +1,112 @@
+colors:
+  bg_accent: "1e1e1c" # accent
+  fg_darkgrey: "58534f" # line numbers
+  fg_grey: "7a7a7a" # comments
+  fg_orange: "c88A77" # strings
+  fg_purple: "b8aed3" # keyword - 'export'
+  fg_pink: "bd8695" # -- Desaturated pink
+  fg_gold: "e8c88c" # names - 'myFunc()'
+  fg_white: "dad6c8" # Text
+  fg_olive: "4e5a3a"
+  fg_teal: "28505f" # -- Desaturated teal
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: fg_purple
+    font-style: underline
+
+  symlink:
+    foreground: fg_orange
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: fg_grey
+    font-style: italic
+
+  socket:
+    foreground: fg_grey
+    font-style: italic
+
+  door:
+    foreground: fg_grey
+    font-style: italic
+
+  block_device:
+    foreground: fg_grey
+
+  character_device:
+    foreground: fg_grey
+
+  broken_symlink:
+    foreground: fg_orange
+    font-style: italic
+
+  missing_symlink_target:
+    foreground: fg_orange
+    font-style: italic
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: fg_gold
+
+text:
+  special:
+    foreground: fg_white
+    font-style: italic
+
+  todo:
+    foreground: fg_white
+
+  licenses:
+    foreground: fg_white
+    font-style: italic
+
+  configuration:
+    foreground: fg_white
+
+  other:
+    foreground: fg_white
+
+markup:
+  foreground: fg_white
+
+programming:
+  source:
+    foreground: fg_white
+
+  tooling:
+    foreground: fg_white
+
+    continuous-integration:
+      foreground: fg_white
+
+media:
+  foreground: fg_teal
+
+office:
+  foreground: fg_white
+
+archives:
+  foreground: fg_olive
+
+executable:
+  foreground: fg_gold
+
+unimportant:
+  foreground: fg_darkgrey
