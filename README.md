@@ -39,6 +39,7 @@ The remaining should be installed by referencing their manuals, however, steps t
 | hyprpaper              | Wallpaper (hyprland)                                                |
 | rofi                   | App launcher (hyprland)                                             |
 | eza                    | A newer bin for 'ls'                                                |
+| vivid                  | A tool for configuring LS_COLORS
 
 ### Packages and stow
 
@@ -174,6 +175,4 @@ cp -ru ~/.config/vivid ~/dotfiles/.config/
 cd ~/dotfiles
 stow .
 ```
-
-hi
 
