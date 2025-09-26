@@ -35,7 +35,7 @@ vim.opt.colorcolumn = "120"
 
 -- Highlight trailing white spaces
 vim.opt.list = true
-vim.opt.listchars = "trail:▒"
+vim.opt.listchars = "trail:▒,tab:»."
 
 vim.opt.spell = true
 vim.opt.spelllang = "en_au"
@@ -54,13 +54,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
         -- Restore cursor
         vim.api.nvim_win_set_cursor(0, curpos)
-      end
-    })
+    end
+})
 
 -- Ensure 1 lines at eof
 vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Add trailing lines to eof when saving",
-    group = vim.api.nvim_create_augroup("buf_eof", {clear = true}),
+    group = vim.api.nvim_create_augroup("buf_eof", { clear = true }),
     pattern = '*',
     callback = function()
         -- Save cursor position to restore later
@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Highlight when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight text when yanking",
-    group = vim.api.nvim_create_augroup("highlight_yank", {clear = true}),
+    group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
     callback = function()
         vim.highlight.on_yank({
             higroup = 'IncSearch',
@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Set terminal cursor to a blinking bar when exiting nvim
 vim.api.nvim_create_autocmd("VimLeave", {
-    group = vim.api.nvim_create_augroup("restore_cursor_augroup", {clear = true}),
+    group = vim.api.nvim_create_augroup("restore_cursor_augroup", { clear = true }),
     callback = function()
         vim.opt.guicursor = "a:ver25,a:blinkwait700-blinkoff400-blinkon175"
     end,
@@ -101,7 +101,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
 
 -- Alow wrap for markdown files
 vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("line_wrap_for_markdown", {clear = true}),
+    group = vim.api.nvim_create_augroup("line_wrap_for_markdown", { clear = true }),
     pattern = "markdown",
     callback = function()
         vim.opt_local.wrap = true
@@ -112,10 +112,19 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Run LSP format on save",
-    group = vim.api.nvim_create_augroup("format_on_save", {clear = true}),
+    group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
     pattern = "*",
     callback = function()
         vim.lsp.buf.format()
     end
 })
 
+-- Override Makefile specific settings
+vim.api.nvim_create_autocmd('FileType', {
+    desc = "Ensure tabs are used on Makefiles instead of spaces",
+    callback = function(event)
+        if event.match == 'make' then
+            vim.opt_local.expandtab = false
+        end
+    end
+})
