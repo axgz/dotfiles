@@ -26,7 +26,8 @@ vim.keymap.set("n", "<C-r>", "<C-o><C-r>", { desc = "NeoVim - Redo" })
 vim.keymap.set("i", "<C-r>", "<C-o><C-r>", { desc = "NeoVim - Redo" })
 
 -- Open netrw
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Netrw - Toggle Menu" })
+--vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Netrw - Toggle Menu" })
+vim.keymap.set("n", "<leader>e", vim.cmd.Oil, { desc = "Open Oil File Manager" })
 
 -- Move selected chunks
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "NeoVim - Move Selected Chunk Up" })
@@ -62,7 +63,8 @@ vim.keymap.set("n", "Q", "<nop>")
 -- ToDo
 
 -- Find and Replace the current word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "NeoVim - Find and Replace Current Word" })
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "NeoVim - Find and Replace Current Word" })
 
 -- Set/unset file as executable
 vim.keymap.set("n", "<leader>+x", "<cmd>!chmod +x %<CR>", { desc = "NeoVim - Run chmod +x On This File", silent = true })
@@ -71,4 +73,3 @@ vim.keymap.set("n", "<leader>_x", "<cmd>!chmod -x %<CR>", { desc = "NeoVim - Run
 -- Close current buffer
 vim.keymap.set("n", "<leader>fc", ":bd<CR>", { desc = "NeoVim - Close Buffer" })
 vim.keymap.set("n", "<leader>fC", ":bd!<CR>", { desc = "NeoVim - Close Buffer (Force)" })
-
