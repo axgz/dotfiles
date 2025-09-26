@@ -27,11 +27,19 @@ function git_files_untracked() {
     fi
 }
 
-# Find number of staged files
-function git_files_tracked() {
+# Find number of modified files
+function git_files_modified() {
     count=$(git diff --name-only 2>/dev/null | wc -l)
     if [[ $count > 0 ]]; then
         echo "%F{$THEME_COLOURS_GIT_TRACKED} $count%f"
+    fi
+}
+
+# Find number of staged files
+function git_files_staged() {
+    count=$(git diff --name-only --cached 2>/dev/null | wc -l)
+    if [[ $count > 0 ]]; then
+        echo "%F{$THEME_COLOURS_GIT_TRACKED} \e[4m$count\e[0m%f"
     fi
 }
 
@@ -40,7 +48,7 @@ function git_commits_ahead() {
     branch=$(git branch --show-current 2>/dev/null)
     count=$(git rev-list --count origin/$branch..$branch 2>/dev/null)
     if [[ $count > 0 ]]; then
-        echo "%F{$THEME_COLOURS_GIT_BRANCH}|+$count%f"
+        echo "%F{$THEME_COLOURS_GIT_BRANCH} ↑$count%f"
     fi
 }
 
@@ -49,7 +57,7 @@ function git_commints_behind() {
     branch=$(git branch --show-current 2>/dev/null)
     count=$(git rev-list --count $branch..origin/$branch 2>/dev/null)
     if [[ $count > 0 ]]; then
-        echo "%F{$THEME_COLOURS_GIT_BRANCH}|-$count%f"
+        echo "%F{$THEME_COLOURS_GIT_BRANCH} ↓$count%f"
     fi
 }
 
@@ -57,5 +65,5 @@ function git_commints_behind() {
 setopt prompt_subst
 
 # Create prompt
-export PS1='%F{$THEME_COLOURS_PS1_PWD}%~$(git_branch_name)$(git_commits_ahead)$(git_commints_behind)$(git_files_tracked)$(git_files_untracked) %F{$THEME_COLOURS_PS1_PROMPT}> %F{$THEME_COLOURS_PS1_TEXT}'
+export PS1='%F{$THEME_COLOURS_PS1_PWD}%~$(git_branch_name)$(git_commits_ahead)$(git_commints_behind)$(git_files_staged)$(git_files_modified)$(git_files_untracked) %F{$THEME_COLOURS_PS1_PROMPT}> %F{$THEME_COLOURS_PS1_TEXT}'
 
