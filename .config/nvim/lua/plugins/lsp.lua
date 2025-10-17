@@ -44,8 +44,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
+            vim.lsp.config('lua_ls', {})
 
             -- Here is where I would like to define any remaps for go-to-definition etc.
             --  Use `:help vim.lsp.buf` to discover func names.
@@ -183,6 +182,9 @@ return {
                     ["<Enter>"] = { "fallback" },
                     ["<Up>"] = { "fallback" },
                     ["<Down>"] = { "fallback" },
+
+                    -- Add additional accept keys
+                    ["<C-y>"] = { "accept", "fallback" }
                 },
             })
         end,

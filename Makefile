@@ -5,7 +5,7 @@ theme:
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 packages:
-	sudo dnf install -y zsh curl wget stow tmux nvim bat
+	sudo dnf install -y zsh curl wget stow tmux nvim fzf bat
 	sudo dnf install -y hyprland kitty mako rofi
 	sudo dnf install -y --releasever=41 hypridle hyprlock hyprpaper hyprpicker
 
