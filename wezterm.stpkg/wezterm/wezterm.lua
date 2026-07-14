@@ -2,7 +2,8 @@ local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local act = wezterm.action
 
-local REPOS = wezterm.home_dir .. "/repos"
+local REPOS_DIR = wezterm.home_dir .. "/repos"
+
 
 local leader_active = false
 
@@ -37,7 +38,7 @@ end)
 
 local function get_project_choices()
     local choices = {}
-    local handle = io.popen('find ' .. REPOS .. ' -maxdepth 1 -mindepth 1 -type d')
+    local handle = io.popen('find ' .. REPOS_DIR .. ' -maxdepth 1 -mindepth 1 -type d')
 
     if not handle then
         return choices
@@ -52,6 +53,15 @@ local function get_project_choices()
 
     handle:close()
     return choices
+end
+
+local function workspace_exists(name)
+    for _, ws_name in ipairs(wezterm.mux.get_workspace_names()) do
+        if ws_name == name then
+            return true
+        end
+    end
+    return false
 end
 
 local function open_project()
@@ -69,33 +79,42 @@ local function open_project()
                 return
             end
 
+            if not label then
+                return
+            end
 
-            window:perform_action(act.SpawnCommandInNewWindow({
-                cwd = id,
-                args = { "nvim" }, -- Ensure nvim is in your PATH
-                set_environment_variables = {
-                    WEZTERM_WORKSPACE = label,
-                },
-            }), pane)
+            -- Using Lua String Interpolation (requires Lua 5.4+)
+            -- local cmd =
+            --    'wezterm cli spawn tab --cwd "' .. id .. '" -- bash && ' ..
+            --    'wezterm cli spawn tab --cwd "' .. id .. '" -- bash -c "github copilot" && ' ..
+            --    'nvim || exec bash'
+            --window:perform_action(act.SpawnCommandInNewWindow({
+            --   cwd = id,
+            --   args = { "bash", "-c", cmd },
+            --   set_environment_variables = {
+            --       WEZTERM_WORKSPACE = label,
+            ---   },
+            -- }), pane)
+            --
 
-            -- Create workspace with the first tab
-            local project_window, nvim_pane = mux.spawn_window {
-                workspace = label,
-                cwd = id,
-                args = { "nvim" }
-            }
-            local nvim_tab = project_window:active_tab()
+            if workspace_exists(label) then
+                window:perform_action(act.SwitchToWorkspace { name = label }, pane)
+            end
 
-            -- Add shell tab
-            local shell_tab, shell_pane = project_window:spawn_tab {
-                cwd = id,
-                args = nil
-            }
+            wezterm.time.call_after(0, function()
+                local _, new_pane, _ = mux.spawn_window({
+                    workspace = label,
+                    cwd = id,
+                    args = { 'nvim', '.' }
+                })
 
-            -- Set focus to nvim
-            project_window:set_active_tab(nvim_tab)
+                new_pane:tab():window():spawn_tab({
+                    cwd = id,
+                    args = { 'bash' }
+                })
 
-            window:perform_action(act.ActivateTabRelative(1), pane)
+                window:perform_action(act.SwitchToWorkspace { name = label }, pane)
+            end)
         end),
     }
 end
@@ -106,9 +125,12 @@ config.unix_domains = {
     { name = 'unix' },
 }
 -- CRITICAL: Connect to the mux server on startup
+config.set_environment_variables = {
+    PATH = os.getenv("PATH"),
+}
 config.default_gui_startup_args = { 'connect', 'unix' }
---config.front_end = "WebGpu"
---config.enable_wayland = false
+config.front_end = "WebGpu"
+config.enable_wayland = false
 config.use_fancy_tab_bar = true
 config.disable_default_key_bindings = true
 config.leader = {
