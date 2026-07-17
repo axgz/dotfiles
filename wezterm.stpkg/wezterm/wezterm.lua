@@ -72,30 +72,25 @@ wezterm.on("update-status",
 )
 
 -- Tab title helper
--- local function tab_title(tab_info)
---     local title = tab_info.tab_title
---     if title and #title > 0 then
---         return title
---     end
---     -- return tab_info.active_pane.title
---     return 'shell'
--- end
+local function tab_title(tab)
+    local pane = tab.active_pane
+    local proc_name = pane.foreground_process_name
+    local title = 'shell'
+    if proc_name and #proc_name > 0 then
+        title = string.gsub(proc_name, '(.*[/\\])(.*)', '%2')
+    end
+    return title
+end
 
 -- Tab title
--- wezterm.on("format-tab-title",
---     function(tab, tabs, panes, config, hover, max_width)
---         local title = " " .. tab.tab_index + 1 .. ": " .. tab_title(tab) .. " "
---         local left_edge_text = ""
---         local right_edge_text = ""
---         if tab.is_active then
---             return {
---                 { Text = left_edge_text },
---                 { Text = title },
---                 { Text = right_edge_text },
---             }
---         end
---     end
--- )
+wezterm.on("format-tab-title",
+    function(tab, tabs, panes, config, hover, max_width)
+        local title = " " .. tab.tab_index + 1 .. ": " .. tab_title(tab) .. " "
+        return {
+            { Text = title }
+        }
+    end
+)
 
 -- ::::::::::::::::::::::::::::::::::: --
 -- Project launcher

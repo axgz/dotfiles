@@ -68,7 +68,7 @@ wezterm: dotfiles
 zsh: vivid
 	stow --adopt -t ~/.config zsh.stpkg
 	sudo dnf install -y zsh
-	sudo chsh -s /bin/zsh
+	sudo chsh -s /bin/zsh $$USER
 
 ohmyzsh: zsh
 	-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>/dev/null
