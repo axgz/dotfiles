@@ -31,6 +31,10 @@ make nvim
 
 ### nvim
 
-- Treesiter is now included in nvim
+- Treesitter is now included in nvim
 - Spell checker
+
+### lazygit
+
+- Capture config
 
