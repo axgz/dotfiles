@@ -1,3 +1,5 @@
 export NERD_FONT_NAME="FiraMono Nerd Font"
 export NERD_FONT_NAME="CommitMono Nerd Font"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"

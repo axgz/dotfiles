@@ -75,5 +75,5 @@ vim.keymap.set("n", "<leader>fc", ":bd<CR>", { desc = "NeoVim - Close Buffer" })
 vim.keymap.set("n", "<leader>fC", ":bd!<CR>", { desc = "NeoVim - Close Buffer (Force)" })
 
 -- Close all buffers
-vim.keymap.set("n", "<leader>fca", ":bd<CR>", { desc = "NeoVim - Close All Buffer" })
-vim.keymap.set("n", "<leader>fCa", ":bd!<CR>", { desc = "NeoVim - Close All Buffers (Force)" })
+vim.keymap.set("n", "<leader>fca", ":%bd<CR>", { desc = "NeoVim - Close All Buffer" })
+vim.keymap.set("n", "<leader>fCa", ":%bd!<CR>", { desc = "NeoVim - Close All Buffers (Force)" })

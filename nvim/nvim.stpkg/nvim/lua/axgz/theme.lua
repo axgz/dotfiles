@@ -117,10 +117,9 @@ function SetThemeVague(variant)
 end
 
 -- This is a comment
-SetThemeKanagawa()
-SetThemeRosePine()
-SetThemeVague()
-SetThemeVsCode()
-SetThemeGithub()
+-- SetThemeKanagawa()
+-- SetThemeRosePine()
+-- SetThemeVague()
+-- SetThemeVsCode()
+-- SetThemeGithub()
 SetThemeJellybeans()
-

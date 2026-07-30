@@ -5,18 +5,14 @@ all: stow install
 stow:
 	stow --adopt -t ~/.config hypr.stpkg
 
-install:
-	sudo dnf copr disable -y solopasha/hyprland
+menus:
+	sudo dnf install -y NetworkManager nmcli bluez swaync libnotify
+
+wallpaper:
+	sudo dnf install -y ImageMagick
+	magick -size 1x1 xc:#000000 ~/Pictures/solid-black.png
+
+install: wallpaper menus
 	sudo dnf copr enable -y lionheartp/Hyprland
-	sudo dnf install -y hyprland
-	# sudo dnf group install -y c-development; \
-	# #sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
-	# pushd ~/repos; \
-	# git clone --recursive https://github.com/hyprwm/Hyprland; \
-	# pushd Hyprland; \
-	# make all && sudo make install; \
-
-
-	#sudo dnf install -y hyprland mako rofi
-	#sudo dnf install -y --releasever=41 hypridle hyprlock hyprpaper hyprpicker
+	sudo dnf install -y hyprland hyprlauncher hyprshutdown hyprlock hypridle
 
