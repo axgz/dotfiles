@@ -3,7 +3,7 @@
 ---------------------
 
 -- Set programs that you use
-terminal    = "wezterm connect unix"
+terminal    = "wezterm"
 fileManager = "dolphin"
 menu        = "hyprlauncher"
 --menu        = "wofi --show drun"

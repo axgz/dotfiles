@@ -47,3 +47,15 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- Auto move popular apps to specific workspace
+hl.window_rule({
+    name = "move-browser",
+    match = { class = "^(" .. browser .. ")$" },
+    workspace = 1
+})
+hl.window_rule({
+    name = "move-terminal",
+    match = { class = "^(" .. terminal .. ")$" },
+    workspace = 2
+})

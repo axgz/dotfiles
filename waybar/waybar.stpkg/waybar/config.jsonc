@@ -20,6 +20,9 @@
     "hyprland/window": {
         "max-length": 50
     },
+    "hyprland/workspaces": {
+        "format": "{icon}"
+    },
     "custom/notifications": {
         "tooltip": false,
         "format": "{icon}",
@@ -85,17 +88,19 @@
         "on-click": "exec kitty --title=wifitui -e wifitui"
     },
     "clock#date": {
-        "format": "{:%A, %d %B %Y}",
+        "format": "{:%A, %d %B}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "format": {
                 "today": "<span color='#75f1fa'><b>{}</b></span>"
             }
         },
-        "on-click": "exec chromium --app=https://calendar.google.com"
+        "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-calendar"
     },
     "clock#time": {
-        "format": "{:%H:%M}"
+        "format": "{:%H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "XDG_CURRENT_DESKTOP=GNOME gnome-calendar"
     },
     "pulseaudio": {
         "format": "{icon}",

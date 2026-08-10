@@ -1,6 +1,4 @@
 local power_script = require("axgz.scripts.power")
-local wifi_script = require("axgz.scripts.wifi")
-local bt_script = require("axgz.scripts.bluetooth")
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -14,8 +12,10 @@ hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 -- Menus
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("sh -c '" .. power_script .. "'"))
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("sh -c '" .. wifi_script .. "'"))
-hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("sh -c '" .. bt_script .. "'"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("sh -c 'kitty --title wifitui -e wifitui'"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("sh -c 'kitty --title bluetui -e bluetui'"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("sh -c 'kitty --title bluetui -e bluetui'"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("sh -c 'kitty --title btop -e btop'"))
 
 -- Popular apps
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))

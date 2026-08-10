@@ -4,61 +4,22 @@
 @define-color dark-7 rgba(63, 63, 70, 1);
 @define-color dark-6 rgba(82, 82, 91, 1);
 @define-color dark-5 rgba(113, 113, 122, 1);
+@define-color text-1 rgba(200, 200, 200, 1);
 
 * {
     font-family:  CommitMono Nerd Font Propo;
     font-size: 12px;
-}
-
-window#waybar {
-    background-color: @dark-9;
-    color: white;
+    margin: 0px;
+    padding: 0px;
+    min-height: 0px;
     background: none;
 }
 
-#workspaces {
-    margin-left: 10px;
-    border-radius: 4px;
-    background: @dark-8;
-    padding: 0px;
-    margin: 0px;
-    min-height: 0px;
+window#waybar {
+    color: @text-1;
 }
 
-#workspaces button:hover {
-    background: transparent;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
-    text-shadow: none;
-    padding: 0px;
-    margin: 0px;
-    min-height: 0px;
-}
-
-#workspaces button {
-    /* padding-left: 3px; */
-    /* margin: 7px 0px 7px 7px; */
-    background: transparent;
-    color: white;
-    border: none;
-    padding: 0px;
-    margin: 0px;
-    min-height: 0px;
-}
-
-#workspaces button.active {
-    background: @highlight;
-    color: black;
-    font-weight: 700;
-    padding: 0px;
-    margin: 0px;
-    min-height: 0px;
-}
-
+#workspaces button,
 #submap,
 #battery,
 #bluetooth,
@@ -69,16 +30,48 @@ window#waybar {
 #clock,
 #custom-notifications,
 #volume {
-    border-radius: 4px;
+    border-radius: 2px;
+    padding: 4px 8px 4px 8px;
+    margin: 0px 2px 0px 2px;
     background: @dark-8;
-    padding: 5px 8px;
-    margin: 5px 10px 5px 0px;
 }
 
 #submap,
 #workspaces button.urgent {
     background: rgba(227, 81, 73, 1);
     color: black;
+}
+
+#workspaces {
+    margin-left: 3px
+}
+
+#custom-notifications {
+    margin-right: 3px;
+}
+
+#workspaces button {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-decoration: none;
+    text-shadow: none;
+    color: @text-1;
+    background: none;
+    padding: 2px 1px 2px 1px;
+    margin: 0px 1px 0px 1px;
+}
+
+#workspaces button:hover {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+#workspaces button.active {
+    background: @dark-8;
 }
 
 #pulseaudio-slider {
@@ -99,7 +92,7 @@ window#waybar {
 
 #pulseaudio-slider trough {
     min-height: 8px;
-    min-width: 75px;
+    min-width: 45px;
     border-radius: 5px;
     background: @dark-7;
 }
@@ -107,34 +100,15 @@ window#waybar {
 #pulseaudio-slider highlight {
     min-width: 10px;
     border-radius: 5px;
-    background: @highlight;
-}
-
-#media {
-    color: #42ff9f;
-    margin: 7px 0px 7px 80px;
-}
-
-#custom-media-animation {
-    font-size: 13px;
-    margin-right: 10px;
-}
-
-#custom-media-now-playing {
-    margin-right: 10px;
-}
-
-#custom-media-time {
-    color: @dark-5;
-    font-size: 14px;
+    background: @text-1;
 }
 
 tooltip {
     background: @dark-9;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 tooltip label {
-    color: white;
+    color: @text-1;
 }
 
