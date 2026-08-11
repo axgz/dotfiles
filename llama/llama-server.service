@@ -4,7 +4,6 @@ After=network.target
 
 [Service]
 Type=simple
-# Run as a specific user (replace 'llama' with your user, or create a dedicated user)
 User=llama
 Group=llama
 WorkingDirectory=/var/lib/llama
@@ -13,13 +12,7 @@ WorkingDirectory=/var/lib/llama
 # -m: Path to your GGUF model
 # -ngl: Number of layers to offload to GPU (use 99 for all)
 # --host 0.0.0.0: Allow external connections
-ExecStart=/opt/llama.cpp/bin/llama-server \
-    -m /var/lib/llama/models/default.gguf \
-    -ngl 99 \
-    --host 0.0.0.0 \
-    --port 8080 \
-    --threads 4 \
-    --ctx-size 4096
+ExecStart=/opt/llama.cpp/bin/llama-server -m /var/lib/llama/models/default.gguf --host 0.0.0.0 --port 8089
 
 Restart=always
 RestartSec=5
