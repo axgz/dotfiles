@@ -69,8 +69,5 @@ service: clean-service
 	ps -u llama -f
 
 validate:
-	curl http://localhost:${LLAMA_PORT}/completion -H "Content-Type: application/json" -d '{
-		"prompt": "Hello, are you working?",
-		"n_predict": 20
-	}'
+	curl http://localhost:${LLAMA_PORT}/completion -H "Content-Type: application/json" -d '{ "prompt": "Hello, are you working?", "n_predict": 20}'
 
