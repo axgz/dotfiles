@@ -3,7 +3,8 @@
 all: stow build install start
 
 stow:
-	sudo stow --adopt -t /etc/systemd/system/ llama.stpgk
+	# sudo stow --adopt -t /etc/systemd/system/ llama.stpgk
+	sudo cp llama-server.service /etc/systemd/system/
 
 build:
 	sudo dnf group install -y development-tools c-development
