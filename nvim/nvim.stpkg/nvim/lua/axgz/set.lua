@@ -40,42 +40,88 @@ vim.opt.listchars = "trail:▒,tab:»."
 vim.opt.spell = true
 vim.opt.spelllang = "en_au"
 
--- Remove trailing white spaces
-vim.api.nvim_create_autocmd('BufWritePre', {
-    desc = 'Trim trailing white spaces when saving',
-    group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
-    pattern = '*',
-    callback = function()
-        -- Save cursor position to restore later
-        local curpos = vim.api.nvim_win_get_cursor(0)
+local function lsp_format_on_save()
+    vim.lsp.buf.format()
+end
 
-        -- Search and replace trailing whitespaces
-        vim.cmd([[keeppatterns %s/\s\+$//e]])
+local function remove_trailing_spaces()
+    -- Search and replace trailing whitespaces
+    vim.cmd([[keeppatterns %s/\s\+$//e]])
+end
 
-        -- Restore cursor
-        vim.api.nvim_win_set_cursor(0, curpos)
+local function add_single_trailing_line_if_missing()
+    local buf = vim.api.nvim_get_current_buf()
+    local buf_line_count = vim.api.nvim_buf_line_count(buf)
+    local last_nonblank = vim.fn.prevnonblank(buf_line_count)
+    if last_nonblank == 0 then
+        return -- Do nothing, buffer is empty or all blank
     end
-})
+    if buf_line_count == last_nonblank then
+        vim.api.nvim_buf_set_lines(buf, buf_line_count, buf_line_count, false, { "" })
+    end
+end
 
--- Ensure 1 lines at eof
+local function remove_excess_trailing_lines()
+    local buf = vim.api.nvim_get_current_buf()
+    local buf_line_count = vim.api.nvim_buf_line_count(buf)
+    local last_nonblank = vim.fn.prevnonblank(buf_line_count)
+    if last_nonblank == 0 then
+        return -- Buffer is empty or all blank
+    end
+    local start_delete = last_nonblank + 2
+    if start_delete <= buf_line_count then
+        vim.api.nvim_buf_set_lines(buf, start_delete - 1, buf_line_count, false, {})
+    end
+end
+
+local function reset_row(row)
+    local buf = vim.api.nvim_get_current_buf()
+    local buff_lines = vim.api.nvim_buf_line_count(buf)
+    if row > buff_lines then
+        row = buff_lines
+    end
+    if row < 1 then
+        row = 1
+    end
+    return row
+end
+
+local function reset_col(row, col)
+    local line_text = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+    local line_cols = vim.fn.strdisplaywidth(line_text)
+    if col > line_cols then
+        col = line_cols
+    end
+    return col
+end
+
+local function format_on_save()
+    local win = vim.api.nvim_get_current_win()
+
+    -- Save cursor position (1-based row, 0-based col)
+    local cursor = vim.api.nvim_win_get_cursor(win)
+
+    local row = cursor[1]
+    local col = cursor[2]
+
+    lsp_format_on_save()
+    remove_trailing_spaces()
+    add_single_trailing_line_if_missing()
+    remove_excess_trailing_lines()
+
+    -- Restore cursor
+    row = reset_row(row)
+    col = reset_col(row, col)
+    vim.api.nvim_win_set_cursor(win, { row, col })
+end
+
+-- Perform pre save edits
 vim.api.nvim_create_autocmd("BufWritePre", {
-    desc = "Add trailing lines to eof when saving",
+    desc = "Ensure 1 lines at eof",
     group = vim.api.nvim_create_augroup("buf_eof", { clear = true }),
     pattern = '*',
     callback = function()
-        -- Save cursor position to restore later
-        local curpos = vim.api.nvim_win_get_cursor(0)
-
-        -- Search and replace empty lines at eof
-        vim.cmd([[keeppatterns silent! %s#\($\n\s*\)\+\%$##]])
-
-        -- Add 4 lines at eof ('G' position the cursor at the eof 'o' enter insert mode)
-        for _ = 1, 1 do
-            vim.cmd("normal! Go\n\n\n")
-        end
-
-        -- Restore cursor
-        vim.api.nvim_win_set_cursor(0, curpos)
+        format_on_save()
     end
 })
 
@@ -109,16 +155,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-    desc = "Run LSP format on save",
-    group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
-    pattern = "*",
-    callback = function()
-        vim.lsp.buf.format()
-    end
-})
-
 -- Override Makefile specific settings
 vim.api.nvim_create_autocmd('FileType', {
     desc = "Ensure tabs are used on Makefiles instead of spaces",
@@ -128,3 +164,4 @@ vim.api.nvim_create_autocmd('FileType', {
         end
     end
 })
+
