@@ -21,6 +21,13 @@ gnome-bindings:
 	gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 "['<Super>0']"
 	gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 "['<Super><Shift>0']"
 
+
+# ----------------------------------------- #
+# System
+# ----------------------------------------- #
+dnf-automatic:
+	$(MAKE) -C dnf-automatic
+
 # ----------------------------------------- #
 # General
 # ----------------------------------------- #
