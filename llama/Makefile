@@ -53,11 +53,9 @@ perms:
 	# 1. Ensure the llama user can access the directory structure (execute/search permission on dirs)
 	sudo chmod 755 /opt/llama.cpp
 	sudo chmod 755 /opt/llama.cpp/bin
-	sudo chmod 755 /opt/llama.cpp/lib
 	sudo chmod 755 /opt/llama.cpp/lib64
 	# 2. Ensure the llama user can read the libraries and execute the binary
 	sudo chmod 755 /opt/llama.cpp/bin/llama-server
-	sudo chmod 644 /opt/llama.cpp/lib/*.so
 	sudo chmod 644 /opt/llama.cpp/lib64/*.so
 	# 3. (Optional) If the service needs to write logs/models, create a specific directory and chown it
 	sudo chown -R llama:llama /var/lib/llama
