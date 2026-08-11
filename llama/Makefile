@@ -1,5 +1,10 @@
 .PHONY: *
 
+MODEL_USER := bartowski
+MODEL_REPO := Qwen2.5-Coder-14B-Instruct-GGUF
+MODEL_NAME := Qwen2.5-Coder-14B-Instruct
+MODEL_QANT := Q4_K_M
+
 all: stow build install start
 
 stow:
@@ -29,6 +34,10 @@ install:
 	sudo chmod +x /opt/llama.cpp/bin/*
 	echo 'export PATH="/opt/llama.cpp/bin:$$PATH"' | sudo tee /etc/profile.d/llama-cpp.sh; \
 	. /etc/profile.d/llama-cpp.sh
+
+models:
+	sudo -u llama curl -L -O --output-dir /var/lib/llama/models/ "https://huggingface.co/${MODEL_USER}/${MODEL_REPO}/resolve/main/${MODEL_NAME}-${MODEL_QANT}.gguf"
+	sudo ln -s /var/lib/llama/models/${MODEL_NAME}-${MODEL_QANT}.gguf /var/lib/llama/models/default.gguf
 
 start:
 	-sudo useradd -m llama
