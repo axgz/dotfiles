@@ -13,7 +13,14 @@ Environment="LD_LIBRARY_PATH=/opt/llama.cpp/lib64"
 # -m: Path to your GGUF model
 # -ngl: Number of layers to offload to GPU (use 99 for all)
 # --host 0.0.0.0: Allow external connections
-ExecStart=/opt/llama.cpp/bin/llama-server -m /var/lib/llama/models/default.gguf --host 0.0.0.0 --port 8089
+ExecStart=/opt/llama.cpp/bin/llama-server -m /var/lib/llama/models/default.gguf \
+    --host 0.0.0.0 \
+    --port 8089 \
+    --threads 8 \
+    --batch-size 4096 \
+    --ubatch-size 512 \
+    --ctx-size 4096 \
+    --mlock
 
 Restart=always
 RestartSec=5

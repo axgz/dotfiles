@@ -68,6 +68,10 @@ service: clean-service
 	sudo systemctl start llama-server
 	ps -u llama -f
 
+firewall:
+	sudo firewall-cmd --permanent --add-port=${LLAMA_PORT}/tcp
+	sudo firewall-cmd --reload
+
 validate:
 	curl http://localhost:${LLAMA_PORT}/completion -H "Content-Type: application/json" -d '{ "prompt": "Hello, are you working?", "n_predict": 20}'
 
