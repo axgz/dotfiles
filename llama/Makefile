@@ -55,13 +55,6 @@ perms:
 	sudo chown -R llama:llama /opt/llama.cpp
 	sudo chown -R llama:llama /var/lib/llama
 
-limits:
-	@echo "Adding memory lock limits to /etc/security/limits.conf..."
-	@echo "*    soft    memlock    unlimited" | sudo tee -a /etc/security/limits.conf > /dev/null
-	@echo "*    hard    memlock    unlimited" | sudo tee -a /etc/security/limits.conf > /dev/null
-	@echo "Limits updated successfully."
-	@echo "IMPORTANT: You must log out and log back in (or reboot) for changes to take effect."
-
 clean-service:
 	-sudo systemctl stop llama-server
 	-sudo systemctl disable llama-server

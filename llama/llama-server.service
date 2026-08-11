@@ -8,6 +8,7 @@ User=llama
 Group=llama
 WorkingDirectory=/var/lib/llama
 Environment="LD_LIBRARY_PATH=/opt/llama.cpp/lib64"
+LimitMEMLOCK=infinity
 
 # Adjust the command line for your specific model and hardware
 # -m: Path to your GGUF model
