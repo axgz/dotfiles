@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 # Run as a specific user (replace 'llama' with your user, or create a dedicated user)
-User=__USER__
-Group=__USER__
+User=llama
+Group=llama
 WorkingDirectory=/var/lib/llama
 
 # Adjust the command line for your specific model and hardware

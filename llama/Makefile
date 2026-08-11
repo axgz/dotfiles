@@ -1,6 +1,9 @@
 .PHONY: *
 
-all: build install start
+all: stow build install start
+
+stow:
+	stow --adopt -t /etc/systemd/system/ llama.stpgk
 
 build:
 	sudo dnf group install -y development-tools c-development
@@ -27,10 +30,13 @@ install:
 	. /etc/profile.d/llama-cpp.sh
 
 start:
-	sudo cp ./llama-server.service /etc/systemd/system/
-	sudo sed -i "s/__USER__/$$USER/g" /etc/systemd/system/llama-server.service
+	sudo useradd -m llama
+	@echo "llama:$$(shell openssl rand -base64 32)" | sudo chpasswd
+	sudo chown -R llama:llama /var/lib/llama
+	sudo chmod 755 /opt/llama.cpp/bin/llama-server
 	sudo systemctl daemon-reload
 	sudo systemctl enable llama-server
 	sudo systemctl start llama-server
 	sudo systemctl status llama-server
+	ps -u llama -f
 
