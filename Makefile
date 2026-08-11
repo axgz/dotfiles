@@ -1,6 +1,6 @@
 .PHONY: *
 
-all: gnome-theme gnome-bindings dnf-automatic root-dotfiles git gcm nvim fonts wezterm vivid zsh ohmyzsh hypr brave syncthing
+all: gnome-theme gnome-bindings basiscs dnf-automatic root-dotfiles git gcm nvim fonts wezterm vivid zsh ohmyzsh hypr brave syncthing
 
 # ----------------------------------------- #
 # Gnome settings
@@ -25,6 +25,10 @@ gnome-bindings:
 # ----------------------------------------- #
 # System
 # ----------------------------------------- #
+
+basisc:
+	sudo dnf install -y kitty
+
 dnf-automatic:
 	$(MAKE) -C dnf-automatic
 
