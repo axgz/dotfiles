@@ -3,8 +3,8 @@
 LLAMA_PORT := 8089
 
 MODEL_USER := bartowski
-MODEL_REPO := Qwen2.5-Coder-14B-Instruct-GGUF
-MODEL_NAME := Qwen2.5-Coder-14B-Instruct
+MODEL_REPO := Qwen2.5-Coder-7B-Instruct-GGUF
+MODEL_NAME := Qwen2.5-Coder-7B-Instruct
 MODEL_QANT := Q4_K_M
 
 all: build install model user perms service
