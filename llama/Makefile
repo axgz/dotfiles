@@ -1,5 +1,7 @@
 .PHONY: *
 
+LLAMA_PORT := 8089
+
 MODEL_USER := bartowski
 MODEL_REPO := Qwen2.5-Coder-14B-Instruct-GGUF
 MODEL_NAME := Qwen2.5-Coder-14B-Instruct
@@ -65,4 +67,10 @@ service: clean-service
 	sudo systemctl enable llama-server
 	sudo systemctl start llama-server
 	ps -u llama -f
+
+validate:
+	curl http://localhost:${LLAMA_PORT}/completion -H "Content-Type: application/json" -d '{
+		"prompt": "Hello, are you working?",
+		"n_predict": 20
+	}'
 
