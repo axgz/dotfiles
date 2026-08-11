@@ -18,10 +18,10 @@ ExecStart=/opt/llama.cpp/bin/llama-server -m /var/lib/llama/models/default.gguf 
     --host 0.0.0.0 \
     --port 8089 \
     --threads 8 \
-    --batch-size 4096 \
-    --ubatch-size 512 \
+    --batch-size 2048 \
+    --ubatch-size 2048 \
     --ctx-size 4096 \
-    --mlock
+    --load-mode mlock
 
 Restart=always
 RestartSec=5
