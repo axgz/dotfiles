@@ -35,7 +35,7 @@ model:
 	sudo mkdir -p /var/lib/llama/models
 	@if [ ! -f /var/lib/llama/models/${MODEL_NAME}-${MODEL_QANT}.gguf ]; then \
 		echo "downloading ${MODEL_NAME}-${MODEL_QANT}.gguf"; \
-		# sudo -u llama curl -C -L -O --output-dir /var/lib/llama/models/ "https://huggingface.co/${MODEL_USER}/${MODEL_REPO}/resolve/main/${MODEL_NAME}-${MODEL_QANT}.gguf"
+		sudo -u llama curl -C -L -O --output-dir /var/lib/llama/models/ "https://huggingface.co/${MODEL_USER}/${MODEL_REPO}/resolve/main/${MODEL_NAME}-${MODEL_QANT}.gguf"; \
 	else \
 		echo "skipping, model ${MODEL_NAME}-${MODEL_QANT}.gguf already exists"; \
 	fi
