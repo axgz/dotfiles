@@ -64,48 +64,48 @@ return {
                 callback = function(ev)
                     vim.keymap.set(
                         "n",
-                        "<leader>gD",
+                        "<Leader>gD",
                         vim.lsp.buf.type_definition,
                         { buffer = ev.buf, desc = "LSP - Type Definition" }
                     )
                     vim.keymap.set(
                         "n",
-                        "<leader>gd",
+                        "<Leader>gd",
                         vim.lsp.buf.definition,
                         { buffer = ev.buf, desc = "LSP - Definition" }
                     )
-                    vim.keymap.set("n", "<leader>gr", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP - Rename" })
+                    vim.keymap.set("n", "<Leader>gr", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP - Rename" })
                     vim.keymap.set(
                         "n",
-                        "<leader>vdi",
+                        "<Leader>vdi",
                         vim.diagnostic.open_float,
                         { buffer = ev.buf, desc = "LSP - Diagnostics" }
                     )
                     vim.keymap.set(
                         "n",
-                        "<leader>vws",
+                        "<Leader>vws",
                         vim.lsp.buf.workspace_symbol,
                         { buffer = ev.buf, desc = "LSP - Workspace Symbol" }
                     )
                     vim.keymap.set(
                         "n",
-                        "<leader>vrr",
+                        "<Leader>vrr",
                         vim.lsp.buf.references,
                         { buffer = ev.buf, desc = "LSP - References" }
                     )
                     vim.keymap.set(
                         "n",
-                        "<leader>vca",
+                        "<Leader>vca",
                         vim.lsp.buf.code_action,
                         { buffer = ev.buf, desc = "LSP - Code Actions" }
                     )
                     vim.keymap.set(
                         "i",
-                        "<C-.>",
+                        "<C-,>",
                         vim.lsp.buf.code_action,
                         { buffer = ev.buf, desc = "LSP - Code Actions" }
                     )
-                    vim.keymap.set("n", "<leader>v==", vim.lsp.buf.format, { buffer = ev.buf, desc = "LSP - Format" })
+                    vim.keymap.set("n", "<Leader>v==", vim.lsp.buf.format, { buffer = ev.buf, desc = "LSP - Format" })
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP - Hover" })
                     vim.keymap.set(
                         "i",
@@ -149,42 +149,36 @@ return {
                     nerd_font_variant = "mono",
                 },
                 completion = {
-                    documentation = { auto_show = true },
-                    list = { selection = { preselect = false, auto_insert = true } },
+                    trigger = {
+                        show_on_keyword = true,
+                        show_on_trigger_character = true
+                    },
+                    documentation = {
+                        auto_show = true
+                    },
+                    list = {
+                        selection = {
+                            preselect = true,
+                            auto_insert = true
+                        }
+                    },
                 },
                 sources = {
                     default = { "lsp", "path", "snippets", "buffer" },
                 },
-                fuzzy = { implementation = "prefer_rust_with_warning" },
-                signature = { enabled = true },
-                -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-                -- 'super-tab' for mappings similar to vscode (tab to accept)
-                -- 'enter' for enter to accept
-                -- 'none' for no mappings
-                --
-                -- All presets have the following mappings:
-                -- C-space: Open menu or open docs if already open
-                -- C-n/C-p or Up/Down: Select next/previous item
-                -- C-e: Hide menu
-                -- See :h blink-cmp-config-keymap for defining your own keymap
+                fuzzy = {
+                    implementation = "prefer_rust_with_warning"
+                },
+                signature = {
+                    enabled = true
+                },
                 keymap = {
-                    preset = "super-tab",
-
-                    -- Use Tab to cycle through completions
-                    --  nb this needs to be paired with `completion.list.selection.preselect` = false (see above)
+                    preset = "none",
+                    ["<A-Space>"] = { "show", "fallback" },
+                    ["<C-Space>"] = { "show", "fallback" },
                     ["<Tab>"] = { "select_next", "fallback" },
                     ["<S-Tab>"] = { "select_prev", "fallback" },
-
-                    -- Use Esc to cancel
                     ["<Esc>"] = { "cancel", "fallback" },
-
-                    -- Don't let blink eat these keys
-                    ["<Enter>"] = { "fallback" },
-                    ["<Up>"] = { "fallback" },
-                    ["<Down>"] = { "fallback" },
-
-                    -- Add additional accept keys
-                    ["<C-y>"] = { "accept", "fallback" }
                 },
             })
         end,
@@ -208,3 +202,4 @@ return {
         end,
     },
 }
+
