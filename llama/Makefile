@@ -26,6 +26,6 @@ install:
 	sudo cp build/bin/llama-bench /opt/llama.cpp/bin/; \
 	popd
 	sudo chmod +x /opt/llama.cpp/bin/*
-	echo 'export PATH="/opt/llama.cpp/bin:$$PATH"' | sudo tee /etc/profile.d/llama-cpp.sh
+	echo 'export PATH="/opt/llama.cpp/bin:$$PATH"' | sudo tee /etc/profile.d/llama-cpp.sh; \
 	source /etc/profile.d/llama-cpp.sh
 
