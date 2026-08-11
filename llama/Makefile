@@ -31,7 +31,7 @@ install:
 
 start:
 	sudo useradd -m llama
-	@echo "llama:$$(shell openssl rand -base64 32)" | sudo chpasswd
+	@echo "llama:$$(openssl rand -base64 32)" | sudo chpasswd
 	sudo chown -R llama:llama /var/lib/llama
 	sudo chmod 755 /opt/llama.cpp/bin/llama-server
 	sudo systemctl daemon-reload
