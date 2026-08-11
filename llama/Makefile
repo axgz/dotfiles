@@ -30,7 +30,7 @@ install:
 	. /etc/profile.d/llama-cpp.sh
 
 start:
-	sudo useradd -m llama
+	-sudo useradd -m llama
 	@echo "llama:$$(openssl rand -base64 32)" | sudo chpasswd
 	sudo chown -R llama:llama /var/lib/llama
 	sudo chmod 755 /opt/llama.cpp/bin/llama-server
