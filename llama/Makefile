@@ -28,7 +28,7 @@ install:
 
 start:
 	sudo cp ./llama-server.service /etc/systemd/system/
-	sed -i "s/__USER__/$$USER/g" /etc/systemd/system/llama-server.service
+	sudo sed -i "s/__USER__/$$USER/g" /etc/systemd/system/llama-server.service
 	sudo systemctl daemon-reload
 	sudo systemctl enable llama-server
 	sudo systemctl start llama-server
