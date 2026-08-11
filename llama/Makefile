@@ -3,7 +3,7 @@
 all: stow build install start
 
 stow:
-	stow --adopt -t /etc/systemd/system/ llama.stpgk
+	sudo stow --adopt -t /etc/systemd/system/ llama.stpgk
 
 build:
 	sudo dnf group install -y development-tools c-development
@@ -31,7 +31,7 @@ install:
 
 start:
 	-sudo useradd -m llama
-	@echo "llama:$$(openssl rand -base64 32)" | sudo chpasswd
+	echo "llama:$$(openssl rand -base64 32)" | sudo chpasswd
 	sudo chown -R llama:llama /var/lib/llama
 	sudo chmod 755 /opt/llama.cpp/bin/llama-server
 	sudo systemctl daemon-reload
