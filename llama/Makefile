@@ -5,28 +5,31 @@ MODEL_REPO := Qwen2.5-Coder-14B-Instruct-GGUF
 MODEL_NAME := Qwen2.5-Coder-14B-Instruct
 MODEL_QANT := Q4_K_M
 
-all: stow build install model start
+all: build install model user perms service
 
-stow:
-	# sudo stow --adopt -t /etc/systemd/system/ llama.stpgk
-	sudo cp llama-server.service /etc/systemd/system/
+clean: clean-build clean-install clean-user clean-service
 
-build:
+clean-build:
+	rm -rf $$HOME/repos/llama.cpp/build
+
+clean: clean-build
 	sudo dnf group install -y development-tools c-development
 	mkdir -p "$$HOME/repos"; \
 	pushd "$$HOME/repos"; \
 	-git clone https://github.com/ggml-org/llama.cpp 2>/dev/null; \
 	pushd llama.cpp && git fetch && git pull; \
-	cmake -B build -DGGML_NATIVE=ON; \
+	cmake -B build -DGGML_NATIVE=ON -DCMAKE_INSTALL_PREFIX=/opt/llama.cpp -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON; \
 	cmake --build build --config Release -j$$(nproc); \
 	popd; \
 	popd
 
-install:
-	sudo mkdir -p /opt/llama
-	sudo cp -r $$HOME/repos/llama.cpp/build/bin /opt/llama/
-	echo 'export PATH="/opt/llama/bin:$$PATH"' | sudo tee /etc/profile.d/llama.sh; \
-	. /etc/profile.d/llama.sh
+clean-install:
+	-sudo rm -rf /opt/llama.cpp
+
+install: clean-install
+	pushd $$HOME/repos/llama.cpp; \
+	sudo cmake --install build; \
+	popd
 
 model:
 	sudo mkdir -p /var/lib/llama/models
@@ -36,11 +39,35 @@ model:
 	fi
 	sudo ln -s /var/lib/llama/models/${MODEL_NAME}-${MODEL_QANT}.gguf /var/lib/llama/models/default.gguf
 
-start:
-	-sudo useradd -m llama
-	echo "llama:$$(openssl rand -base64 32)" | sudo chpasswd
-	sudo chown -R llama:llama /opt/llama
+clean-user:
+	-sudo userdel -r llama
+
+user: clean-user
+	-sudo useradd --system --no-create-home --shell /usr/sbin/nologin llama
+	# echo "llama:$$(openssl rand -base64 32)" | sudo chpasswd
+	id llama
+
+perms:
+	# 1. Ensure the llama user can access the directory structure (execute/search permission on dirs)
+	sudo chmod 755 /opt/llama.cpp
+	sudo chmod 755 /opt/llama.cpp/bin
+	sudo chmod 755 /opt/llama.cpp/lib
+	sudo chmod 755 /opt/llama.cpp/lib64
+	# 2. Ensure the llama user can read the libraries and execute the binary
+	sudo chmod 755 /opt/llama.cpp/bin/llama-server
+	sudo chmod 644 /opt/llama.cpp/lib/*.so
+	sudo chmod 644 /opt/llama.cpp/lib64/*.so
+	# 3. (Optional) If the service needs to write logs/models, create a specific directory and chown it
 	sudo chown -R llama:llama /var/lib/llama
+
+clean-service:
+	-sudo systemctl stop llama-server
+	-sudo systemctl disable llama-server
+	-sudo rm /etc/systemd/system/llama-server.service
+	-sudo systemctl daemon-reload
+
+service: clean-service
+	sudo cp llama-server.service /etc/systemd/system/
 	sudo systemctl daemon-reload
 	sudo systemctl enable llama-server
 	sudo systemctl start llama-server
