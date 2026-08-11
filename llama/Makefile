@@ -12,7 +12,7 @@ clean: clean-build clean-install clean-user clean-service
 clean-build:
 	rm -rf $$HOME/repos/llama.cpp/build
 
-clean: clean-build
+build: clean-build
 	sudo dnf group install -y development-tools c-development
 	mkdir -p "$$HOME/repos"; \
 	pushd "$$HOME/repos"; \
