@@ -34,10 +34,10 @@ install: clean-install
 model:
 	sudo mkdir -p /var/lib/llama/models
 	@if [ ! -f /var/lib/llama/models/${MODEL_NAME}-${MODEL_QANT}.gguf ]; then \
-		echo "downloading ${MODEL_NAME}-${MODEL_QANT}.gguf"
+		echo "downloading ${MODEL_NAME}-${MODEL_QANT}.gguf"; \
 		# sudo -u llama curl -C -L -O --output-dir /var/lib/llama/models/ "https://huggingface.co/${MODEL_USER}/${MODEL_REPO}/resolve/main/${MODEL_NAME}-${MODEL_QANT}.gguf"
-	else
-		echo "skipping, model ${MODEL_NAME}-${MODEL_QANT}.gguf already exists"
+	else \
+		echo "skipping, model ${MODEL_NAME}-${MODEL_QANT}.gguf already exists"; \
 	fi
 	sudo ln -s /var/lib/llama/models/${MODEL_NAME}-${MODEL_QANT}.gguf /var/lib/llama/models/default.gguf
 
