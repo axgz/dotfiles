@@ -25,7 +25,7 @@ build: clean-build
 		-DCMAKE_INSTALL_PREFIX=/opt/llama.cpp \
 		-DGGML_NATIVE=OFF \
 		-DGGML_FMA=ON \
-		-DGGML_F16=ON \
+		-DGGML_F16C=ON \
 		-DGGML_AVX=ON \
 		-DGGML_AVX2=OFF \
 		-DGGML_AVX512=OFF \
