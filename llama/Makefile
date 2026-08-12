@@ -44,7 +44,6 @@ model:
 	else \
 		echo "skipping, model ${MODEL_NAME}-${MODEL_QANT}.gguf already exists"; \
 	fi
-	sudo ln -s /var/lib/llama/models/${MODEL_NAME}-${MODEL_QANT}.gguf /var/lib/llama/models/default.gguf
 
 clean-user:
 	-sudo userdel -r llama
@@ -64,7 +63,7 @@ clean-service:
 	-sudo rm /etc/systemd/system/llama-server.service
 	-sudo systemctl daemon-reload
 
-service: clean-service
+service: clean-service perms
 	sudo cp llama-server.service /etc/systemd/system/
 	sudo systemctl daemon-reload
 	sudo systemctl enable llama-server

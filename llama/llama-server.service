@@ -19,6 +19,7 @@ ExecStart=/opt/llama.cpp/bin/llama-server \
     --batch-size 4096 \
     --ubatch-size 512 \
     --ctx-size 16384 \
+    --jinja \
     --load-mode mlock
 
 Restart=always
