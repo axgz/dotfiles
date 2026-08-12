@@ -11,10 +11,10 @@ Environment="LD_LIBRARY_PATH=/opt/llama.cpp/lib64"
 LimitMEMLOCK=infinity
 
 ExecStart=/opt/llama.cpp/bin/llama-server \
+    -ngl 0 \
     --models-dir /var/lib/llama/models \
     --host 0.0.0.0 \
     --port 8089 \
-    --ngl 0 \
     --threads 6 \
     --batch-size 4096 \
     --ubatch-size 512 \

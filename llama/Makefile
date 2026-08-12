@@ -23,17 +23,6 @@ build: clean-build
 	cmake -B build \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/opt/llama.cpp \
-		-DGGML_NATIVE=OFF \
-		-DGGML_FMA=ON \
-		-DGGML_F16C=ON \
-		-DGGML_AVX=ON \
-		-DGGML_AVX2=OFF \
-		-DGGML_AVX512=OFF \
-		-DGGML_CUDA=OFF \
-		-DGGML_HIP=OFF \
-		-DGGML_VULKAN=OFF \
-		-DLLAMA_OPENSSL=ON \
-		-DLLAMA_CURL=ON \
 		-DBUILD_SHARED_LIBS=OFF; \
 	cmake --build build --config Release -j$$(nproc); \
 	popd; \
