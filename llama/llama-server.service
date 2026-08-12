@@ -10,17 +10,15 @@ WorkingDirectory=/var/lib/llama
 Environment="LD_LIBRARY_PATH=/opt/llama.cpp/lib64"
 LimitMEMLOCK=infinity
 
-# Adjust the command line for your specific model and hardware
-# -m: Path to your GGUF model
-# -ngl: Number of layers to offload to GPU (use 99 for all)
-# --host 0.0.0.0: Allow external connections
-ExecStart=/opt/llama.cpp/bin/llama-server -m /var/lib/llama/models/default.gguf \
+ExecStart=/opt/llama.cpp/bin/llama-server \
+    --models-dir /var/lib/llama/models \
     --host 0.0.0.0 \
     --port 8089 \
-    --threads 8 \
-    --batch-size 2048 \
-    --ubatch-size 2048 \
-    --ctx-size 4096 \
+    --ngl 0 \
+    --threads 6 \
+    --batch-size 4096 \
+    --ubatch-size 512 \
+    --ctx-size 16384 \
     --load-mode mlock
 
 Restart=always
